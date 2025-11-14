@@ -22,33 +22,21 @@ export class Login {
    */
   buttonLogin: Locator
 
-  /**
-   * Locator para o botão My account
-   *
-   * Utilizado para identificar e interagir com o botão My account disponivel após o login.
-   */
-  buttonMyAccount: Locator
-
   constructor(readonly page: Page) {
-    this.inputEmail = page.getByRole('textbox', { name: 'Email:' })
-    this.inputPassword = page.getByRole('textbox', { name: 'Password:' })
-    this.buttonLogin = page.getByRole('button', { name: 'Log in' })
-
-    this.buttonMyAccount = page
-      .getByRole('banner')
-      .getByRole('link', { name: 'My account' })
-  }
-
-  async visit() {
-    await this.page.goto('/login')
+    this.inputEmail = page.locator('[data-test="username"]')
+    this.inputPassword = page.locator('[data-test="password"]')
+    this.buttonLogin = page.locator('[data-test="login-button"]')
   }
 
   async doLogin(email: string, password: string) {
+    await this.page.goto('/')
     await this.inputEmail.fill(email)
     await this.inputPassword.fill(password)
 
     await this.buttonLogin.click()
 
-    await expect(this.buttonMyAccount).toBeVisible()
+    await expect(
+      this.page.locator('[data-test="inventory-container"]'),
+    ).toBeVisible()
   }
 }
