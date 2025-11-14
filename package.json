@@ -1,0 +1,31 @@
+{
+  "name": "desafio-on-fly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroBRosa/desafio-on-fly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroBRosa/desafio-on-fly/issues"
+  },
+  "homepage": "https://github.com/PedroBRosa/desafio-on-fly#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@eslint/js": "^9.19.0",
+    "dotenv": "^16.4.5",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.23.0"
+  }
+}
