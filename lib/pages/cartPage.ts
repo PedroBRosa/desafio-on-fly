@@ -1,7 +1,11 @@
-import { expect, type Page } from '@playwright/test'
+import { expect, Locator, type Page } from '@playwright/test'
 
 export class Cart {
-  constructor(readonly page: Page) {}
+  continueShoppingButton: Locator
+
+  constructor(readonly page: Page) {
+    this.continueShoppingButton = page.getByTestId('continue-shopping')
+  }
 
   async validateIsProduct(id: number, title: string) {
     await expect(this.page.getByTestId(`item-${id}-title-link`)).toHaveText(

@@ -31,8 +31,12 @@ export class Header {
     await expect(this.pageTitle).toHaveText(pageName)
   }
 
-  async checkCartQuantity(quantity: string) {
-    await expect(this.shoppingCartQuantity).toHaveText(quantity)
+  async checkCartQuantity(quantity: number) {
+    if (quantity === 0) {
+      await expect(this.shoppingCartQuantity).toBeHidden()
+    } else {
+      await expect(this.shoppingCartQuantity).toHaveText(quantity.toString())
+    }
   }
 
   async visitCart() {

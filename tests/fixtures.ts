@@ -27,6 +27,5 @@ export const test = base.extend<Fixtures>({
   productPage: async ({ page }, use) => {
     await use(new Product(page))
   },
-
 })
 export { expect } from '@playwright/test'
