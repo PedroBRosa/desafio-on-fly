@@ -4,7 +4,7 @@ import { CheckoutSteps } from '../../lib/utils/checkoutStepsEnum'
 
 test.describe(`\n Feature: Checkout (step das informações do usuário)`, () => {
   test('CENÁRIO: Usuário preenchedo todos os dados do forms deve conseguir avançar no fluxo', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -31,7 +31,7 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
   })
 
   test('CENÁRIO: Usuário desistindo da compra', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
     headerPage,
   }) => {
@@ -49,7 +49,7 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
   })
 
   test('CENÁRIO: Usuário sem preencher o forms e tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     await test.step(`DADO que eu seja um usuário no primeiro step do checkout"`, async () => {
@@ -61,7 +61,7 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
 
     await test.step('ENTÃO não posso seguir para o próximo step', async () => {
@@ -70,7 +70,7 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
   })
 
   test('CENÁRIO: Usuário preenchedo somente o primeiro nome quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -92,12 +92,12 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 
   test('CENÁRIO: Usuário preenchedo somente o sobrenome quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -119,12 +119,12 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 
   test('CENÁRIO: Usuário preenchedo somente o zipcode quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -146,12 +146,12 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 
   test('CENÁRIO: Usuário preenchedo somente o primeiro nome e o sobrenome quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -174,12 +174,12 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 
   test('CENÁRIO: Usuário preenchedo somente o primeiro nome e o zipCode quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -202,12 +202,12 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 
   test('CENÁRIO: Usuário preenchedo somente o sobrenome e o zipCode quando tentar avaçar para o próximo step deve receber um error', async ({
-    OrderInformationStep: _OrderInformationStep,
+    orderInformationStep: _orderInformationStep,
     checkoutPage,
   }) => {
     const user = userGenerator()
@@ -230,7 +230,7 @@ test.describe(`\n Feature: Checkout (step das informações do usuário)`, () =>
     })
 
     await test.step('E devo ver um error', async () => {
-      await checkoutPage.checkAndValidateError()
+      await checkoutPage.hasOccurredError()
     })
   })
 })
