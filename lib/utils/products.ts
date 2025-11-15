@@ -5,6 +5,11 @@ export interface Product {
   price: string
   class: string
 }
+export interface OrderPrices {
+  subtotal: string
+  tax: string
+  total: string
+}
 
 export const products: Record<string, Product> = {
   0: {
