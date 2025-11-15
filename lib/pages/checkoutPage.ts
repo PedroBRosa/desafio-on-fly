@@ -4,6 +4,7 @@ export class Checkout {
   fristNameInput: Locator
   lastNameInput: Locator
   zipCodeInput: Locator
+  cancelButton: Locator
   continueButton: Locator
   errorMenssage: Locator
 
@@ -11,6 +12,7 @@ export class Checkout {
     this.fristNameInput = page.getByTestId('firstName')
     this.lastNameInput = page.getByTestId('lastName')
     this.zipCodeInput = page.getByTestId('postalCode')
+    this.cancelButton = page.getByTestId('cancel')
     this.continueButton = page.getByTestId('continue')
     this.errorMenssage = page.getByTestId('error')
   }
