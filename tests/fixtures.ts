@@ -9,6 +9,7 @@ import { CheckoutPage } from '../lib/pages/checkoutPage'
 
 import { getRandomProduct } from '../lib/helper/products'
 import { Product, products } from '../lib/utils/products'
+import { userGenerator } from '../lib/helper/userGenerator'
 
 interface Fixtures {
   //Page Objects
@@ -20,8 +21,8 @@ interface Fixtures {
 
   //Fixture personalizadas
   products: Product[]
-  OrderInformationStep: void
-  prepareOrderToOverviewStep: Product[]
+  orderInformationStep: void
+  orderOverviewStep: Product[]
 }
 
 export const test = base.extend<Fixtures>({
@@ -52,10 +53,7 @@ export const test = base.extend<Fixtures>({
     await use(listProducts)
   },
 
-  OrderInformationStep: async (
-    { loginPage, productPage, cartPage },
-    use,
-  ) => {
+  orderInformationStep: async ({ loginPage, productPage, cartPage }, use) => {
     const email = process.env.EMAIL as string
     const password = process.env.PASSWORD as string
 
@@ -69,12 +67,13 @@ export const test = base.extend<Fixtures>({
     await use()
   },
 
-  prepareOrderToOverviewStep: async (
+  orderOverviewStep: async (
     { products, loginPage, productPage, cartPage, checkoutPage },
     use,
   ) => {
     const email = process.env.EMAIL as string
     const password = process.env.PASSWORD as string
+    const user = userGenerator()
 
     await loginPage.doLogin(email, password)
 
@@ -83,6 +82,12 @@ export const test = base.extend<Fixtures>({
 
     await cartPage.visit()
     await cartPage.checkoutButton.click()
+
+    await checkoutPage.fillCheckoutForms(
+      user.fristName,
+      user.lasName,
+      user.zipCode,
+    )
 
     await checkoutPage.continueButton.click()
 
