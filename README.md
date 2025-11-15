@@ -1,4 +1,4 @@
-# Desafio On Fly - Testes E2E com Playwright
+# Desafio OnFly - Testes E2E com Playwright
 
 ## 📋 Descrição
 
@@ -77,39 +77,6 @@ npx playwright show-report
 ### Executar testes em modo debug:
 ```bash
 npx playwright test --debug
-```
-
-## 📁 Estrutura do Projeto
-
-```
-desafio-on-fly/
-├── lib/
-│   ├── helper/
-│   │   ├── orderPriceCalculator.ts    # Calculadora de preços de pedidos
-│   │   ├── products.ts                # Helper para seleção de produtos
-│   │   └── userGenerator.ts           # Gerador de dados de usuário
-│   ├── pages/
-│   │   ├── cartPage.ts                # Page Object do carrinho
-│   │   ├── checkoutPage.ts            # Page Object do checkout
-│   │   ├── headerPage.ts              # Page Object do header
-│   │   ├── loginPage.ts               # Page Object de login
-│   │   └── productPage.ts             # Page Object de produtos
-│   └── utils/
-│       ├── checkoutStepsEnum.ts       # Enum dos steps do checkout
-│       └── products.ts                # Dados dos produtos
-├── tests/
-│   ├── e2e/
-│   │   ├── cart.spec.ts               # Testes do carrinho
-│   │   ├── checkoutInformationStep.spec.ts  # Testes do step de informações
-│   │   └── checkoutOrderFinish.spec.ts      # Testes de finalização do pedido
-│   └── fixtures.ts                    # Fixtures customizadas
-├── .env                               # Variáveis de ambiente (não versionado)
-├── .gitignore
-├── .prettierrc
-├── eslint.config.mjs
-├── package.json
-├── playwright.config.ts               # Configuração do Playwright
-└── README.md
 ```
 
 ## 🧪 Cenários de Teste (BDD)
@@ -285,19 +252,39 @@ Funções auxiliares para:
 - Cálculo de preços de pedidos
 - Seleção aleatória de produtos
 
-## 📊 Configuração do Playwright
+## 📁 Estrutura do Projeto
 
-O projeto está configurado para executar testes em:
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit (Safari)
+```
+desafio-on-fly/
+├── lib/
+│   ├── helper/
+│   │   ├── orderPriceCalculator.ts    # Calculadora de preços de pedidos
+│   │   ├── products.ts                # Helper para seleção de produtos
+│   │   └── userGenerator.ts           # Gerador de dados de usuário
+│   ├── pages/
+│   │   ├── cartPage.ts                # Page Object do carrinho
+│   │   ├── checkoutPage.ts            # Page Object do checkout
+│   │   ├── headerPage.ts              # Page Object do header
+│   │   ├── loginPage.ts               # Page Object de login
+│   │   └── productPage.ts             # Page Object de produtos
+│   └── utils/
+│       ├── checkoutStepsEnum.ts       # Enum dos steps do checkout
+│       └── products.ts                # Dados dos produtos
+├── tests/
+│   ├── e2e/
+│   │   ├── cart.spec.ts               # Testes do carrinho
+│   │   ├── checkoutInformationStep.spec.ts  # Testes do step de informações
+│   │   └── checkoutOrderFinish.spec.ts      # Testes de finalização do pedido
+│   └── fixtures.ts                    # Fixtures customizadas
+├── .env                               # Variáveis de ambiente (não versionado)
+├── .gitignore
+├── .prettierrc
+├── eslint.config.mjs
+├── package.json
+├── playwright.config.ts               # Configuração do Playwright
+└── README.md
+```
 
-Configurações adicionais:
-- Execução paralela de testes
-- 2 tentativas em caso de falha
-- Screenshots automáticos
-- Trace em caso de falha
-- Relatório HTML
 
 ## 👤 Autor
 
