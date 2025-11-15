@@ -1,47 +1,61 @@
 import { test as base } from '@playwright/test'
-import { Cart } from '../lib/pages/cartPage'
-import { Header } from '../lib/pages/headerPage'
-import { Login } from '../lib/pages/loginPage'
-import { Product } from '../lib/pages/productPage'
+
+// Import dos Page Objects
+import { CartPage } from '../lib/pages/cartPage'
+import { HeaderPage } from '../lib/pages/headerPage'
+import { LoginPage } from '../lib/pages/loginPage'
+import { ProductPage } from '../lib/pages/productPage'
+import { CheckoutPage } from '../lib/pages/checkoutPage'
+
 import { getRandomProduct } from '../lib/helper/products'
-import { products } from '../lib/utils/products'
-import { Checkout } from '../lib/pages/checkoutPage'
+import { Product, products } from '../lib/utils/products'
 
 interface Fixtures {
-  //Imports dos Pages Objects
-  cartPage: Cart
-  checkoutPage: Checkout
-  headerPage: Header
-  loginPage: Login
-  productPage: Product
+  //Page Objects
+  cartPage: CartPage
+  checkoutPage: CheckoutPage
+  headerPage: HeaderPage
+  loginPage: LoginPage
+  productPage: ProductPage
 
   //Fixture personalizadas
-  prepareOrder: void
+  products: Product[]
+  OrderInformationStep: void
+  prepareOrderToOverviewStep: Product[]
 }
 
 export const test = base.extend<Fixtures>({
+  //Page Objects Fixture
   cartPage: async ({ page }, use) => {
-    await use(new Cart(page))
+    await use(new CartPage(page))
   },
-
   checkoutPage: async ({ page }, use) => {
-    await use(new Checkout(page))
+    await use(new CheckoutPage(page))
   },
-
   headerPage: async ({ page }, use) => {
-    await use(new Header(page))
+    await use(new HeaderPage(page))
   },
-
   loginPage: async ({ page }, use) => {
-    await use(new Login(page))
+    await use(new LoginPage(page))
   },
-
   productPage: async ({ page }, use) => {
-    await use(new Product(page))
+    await use(new ProductPage(page))
   },
 
   //Fixture para preparar a order
-  prepareOrder: async ({ loginPage, productPage, cartPage }, use) => {
+  products: async ({}, use) => {
+    const tempListProducts = { ...products }
+    const firstProduct = getRandomProduct(tempListProducts)
+    delete tempListProducts[firstProduct.id]
+    const listProducts = [getRandomProduct(tempListProducts), firstProduct]
+
+    await use(listProducts)
+  },
+
+  OrderInformationStep: async (
+    { loginPage, productPage, cartPage },
+    use,
+  ) => {
     const email = process.env.EMAIL as string
     const password = process.env.PASSWORD as string
 
@@ -53,6 +67,26 @@ export const test = base.extend<Fixtures>({
     await cartPage.checkoutButton.click()
 
     await use()
+  },
+
+  prepareOrderToOverviewStep: async (
+    { products, loginPage, productPage, cartPage, checkoutPage },
+    use,
+  ) => {
+    const email = process.env.EMAIL as string
+    const password = process.env.PASSWORD as string
+
+    await loginPage.doLogin(email, password)
+
+    await productPage.addToCart(products[0].class)
+    await productPage.addToCart(products[1].class)
+
+    await cartPage.visit()
+    await cartPage.checkoutButton.click()
+
+    await checkoutPage.continueButton.click()
+
+    await use(products)
   },
 })
 export { expect } from '@playwright/test'

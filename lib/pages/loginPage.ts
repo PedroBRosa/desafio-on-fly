@@ -1,6 +1,6 @@
 import { expect, Locator, type Page } from '@playwright/test'
 
-export class Login {
+export class LoginPage {
   /**
    * Locator para o input do email
    *

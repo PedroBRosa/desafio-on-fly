@@ -1,6 +1,6 @@
 import { expect, Locator, type Page } from '@playwright/test'
 import { CheckoutSteps } from '../utils/checkoutStepsEnum'
-export class Checkout {
+export class CheckoutPage {
   fristNameInput: Locator
   lastNameInput: Locator
   zipCodeInput: Locator

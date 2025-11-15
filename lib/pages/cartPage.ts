@@ -1,6 +1,6 @@
 import { expect, Locator, type Page } from '@playwright/test'
 
-export class Cart {
+export class CartPage {
   continueShoppingButton: Locator
   checkoutButton: Locator
 

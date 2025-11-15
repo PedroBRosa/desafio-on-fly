@@ -1,6 +1,6 @@
 import { expect, type Page } from '@playwright/test'
 
-export class Product {
+export class ProductPage {
   constructor(readonly page: Page) {}
 
   validatePage() {

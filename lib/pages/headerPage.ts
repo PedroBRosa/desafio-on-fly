@@ -1,6 +1,6 @@
 import { expect, Locator, type Page } from '@playwright/test'
 
-export class Header {
+export class HeaderPage {
   /**
    * Locator para o botão do carrinho
    *
