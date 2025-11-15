@@ -35,6 +35,12 @@ export default [
       'playwright/no-force-option': 'off',
       'playwright/no-wait-for-timeout': 'off',
       'playwright/no-conditional-in-test': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_.*$',
+        },
+      ],
     },
   },
 ]
