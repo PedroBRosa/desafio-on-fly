@@ -2,19 +2,19 @@ import { expect, Locator, type Page } from '@playwright/test'
 
 export class HeaderPage {
   /**
-   * Locator para o botão do carrinho
+   * @Locator para o botão do carrinho
    *
    * Utilizado para identificar e interagir com o botão do carrinho no header da página
    */
   shoppingCartButton: Locator
 
   /**
-   * Locator para verificar a quantidade de itens no carrinho
+   * @Locator para verificar a quantidade de itens no carrinho
    */
   shoppingCartQuantity: Locator
 
   /**
-   * Locator para o titulo da página
+   * @Locator para o titulo da página
    *
    * Utilizado para identificar e interagir com o titulo da página
    */
@@ -27,10 +27,19 @@ export class HeaderPage {
     this.pageTitle = page.getByTestId('secondary-header')
   }
 
+  /**
+   * @method checkPage valida o nome da current page
+   * @param {string} pageName - Nome da página, visível no header
+   *
+   */
   async checkPage(pageName: string) {
     await expect(this.pageTitle).toHaveText(pageName)
   }
-
+  /**
+   * @method checkCartQuantity valida a quantidade de itens no carrinho
+   * @param {number} quantity - quantidade de itens adicionado no carrinho
+   *
+   */
   async checkCartQuantity(quantity: number) {
     if (quantity === 0) {
       await expect(this.shoppingCartQuantity).toBeHidden()
@@ -39,6 +48,10 @@ export class HeaderPage {
     }
   }
 
+  /**
+   * @method visitCart direciona para a página do carrinho
+   *
+   */
   async visitCart() {
     await this.shoppingCartButton.click()
     await this.checkPage('Your Cart')

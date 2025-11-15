@@ -2,23 +2,23 @@ import { expect, Locator, type Page } from '@playwright/test'
 
 export class LoginPage {
   /**
-   * Locator para o input do email
+   * @Locator para o input do email
    *
-   * Utilizado para identificar e interagir com o input do email da página de login.
+   * Utilizado para identificar e interagir com o input do email
    */
   inputEmail: Locator
 
   /**
-   * Locator para o input de senha
+   * @Locator para o input de senha
    *
-   * Utilizado para identificar e interagir com o input de senha da página de login.
+   * Utilizado para identificar e interagir com o input de senha
    */
   inputPassword: Locator
 
   /**
-   * Locator para o botão de login
+   * @Locator para o botão de login
    *
-   * Utilizado para identificar e interagir com o botão de login da página de login.
+   * Utilizado para identificar e interagir com o botão de login
    */
   buttonLogin: Locator
 
@@ -29,10 +29,10 @@ export class LoginPage {
   }
 
   /**
-   * Método que realiza o login na plataforma sauce demon
+   * @method doLogin realiza o login na plataforma
    *
-   * @param email recebe o email do tipo string para realizar o login
-   * @param password recebe a senha do tipo string para realizar o login
+   * @param {string} email
+   * @param {string} password
    */
   async doLogin(email: string, password: string) {
     await this.page.goto('/')
