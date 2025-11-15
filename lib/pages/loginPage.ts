@@ -28,6 +28,12 @@ export class Login {
     this.buttonLogin = page.getByTestId('login-button')
   }
 
+  /**
+   * Método que realiza o login na plataforma sauce demon
+   *
+   * @param email recebe o email do tipo string para realizar o login
+   * @param password recebe a senha do tipo string para realizar o login
+   */
   async doLogin(email: string, password: string) {
     await this.page.goto('/')
     await this.inputEmail.fill(email)

@@ -3,20 +3,21 @@ import { products } from '../../lib/utils/products'
 import { getRandomProduct } from '../../lib/helper/products'
 
 test.describe('Feature: Carrinho', () => {
-  test.beforeEach(
-    'DADO que eu seja um usuário logado',
-    async ({ loginPage }) => {
-      const email = process.env.EMAIL as string
-      const password = process.env.PASSWORD as string
+  test.beforeEach(async ({ loginPage }) => {
+    const email = process.env.EMAIL as string
+    const password = process.env.PASSWORD as string
 
-      await loginPage.doLogin(email, password)
-    },
-  )
+    await loginPage.doLogin(email, password)
+  })
 
   test('CENÁRIO: Adicionar um produto no carrinho', async ({
     productPage,
     headerPage,
   }) => {
+    await test.step('DADO que eu seja um usuário logado"', async () => {
+      productPage.validatePage()
+    })
+
     await test.step('QUANDO adicionar um produto no carrinho', async () => {
       await productPage.addToCart(getRandomProduct(products).class)
     })
@@ -35,6 +36,10 @@ test.describe('Feature: Carrinho', () => {
     delete listProducts[firstProduct.id]
     const secondProduct = getRandomProduct(listProducts)
 
+    await test.step('DADO que eu seja um usuário logado"', async () => {
+      productPage.validatePage()
+    })
+
     await test.step('QUANDO adicionar dois produtos no carrinho', async () => {
       await productPage.addToCart(firstProduct.class)
       await productPage.addToCart(secondProduct.class)
@@ -51,7 +56,10 @@ test.describe('Feature: Carrinho', () => {
       productPage,
       cartPage,
     }) => {
-      await test.step(`E adicionar o(a) ${product.title} no carrinho`, async () => {
+      await test.step('DADO que eu seja um usuário logado"', async () => {
+        productPage.validatePage()
+      })
+      await test.step(`E adiciono o(a) ${product.title} no carrinho`, async () => {
         await productPage.addToCart(product.class)
         await headerPage.checkCartQuantity(1)
       })
@@ -76,7 +84,11 @@ test.describe('Feature: Carrinho', () => {
     delete listProducts[firstProduct.id]
     const secondProduct = getRandomProduct(listProducts)
 
-    await test.step('E adicionar dois produtos no carrinho', async () => {
+    await test.step('DADO que eu seja um usuário logado"', async () => {
+      productPage.validatePage()
+    })
+
+    await test.step('E adiciono dois produtos no carrinho', async () => {
       await productPage.addToCart(firstProduct.class)
       await productPage.addToCart(secondProduct.class)
     })
@@ -108,8 +120,11 @@ test.describe('Feature: Carrinho', () => {
     const firstProduct = getRandomProduct(listProducts)
     delete listProducts[firstProduct.id]
     const secondProduct = getRandomProduct(listProducts)
+    await test.step('DADO que eu seja um usuário logado"', async () => {
+      productPage.validatePage()
+    })
 
-    await test.step('E adicionar dois produtos no carrinho', async () => {
+    await test.step('E adiciono dois produtos no carrinho', async () => {
       await productPage.addToCart(firstProduct.class)
       await productPage.addToCart(secondProduct.class)
     })
@@ -118,7 +133,7 @@ test.describe('Feature: Carrinho', () => {
       await headerPage.visitCart()
     })
 
-    await test.step(`E remover o ${firstProduct.title}  e o ${secondProduct.title} do carrinho`, async () => {
+    await test.step(`E remover o ${firstProduct.title} e o ${secondProduct.title} do carrinho`, async () => {
       await headerPage.checkCartQuantity(2)
 
       await cartPage.removeAndValidateProduct(
@@ -146,6 +161,10 @@ test.describe('Feature: Carrinho', () => {
     const firstProduct = getRandomProduct(listProducts)
     delete listProducts[firstProduct.id]
     const secondProduct = getRandomProduct(listProducts)
+
+    await test.step('DADO que eu seja um usuário logado"', async () => {
+      productPage.validatePage()
+    })
 
     await test.step('E tenho um produto adicionado no carrinho', async () => {
       await productPage.addToCart(firstProduct.class)
