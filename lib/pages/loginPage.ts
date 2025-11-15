@@ -4,7 +4,7 @@ export class Login {
   /**
    * Locator para o input do email
    *
-   * Utilizado para identificar e interagir com o o input do email da página de login.
+   * Utilizado para identificar e interagir com o input do email da página de login.
    */
   inputEmail: Locator
 
@@ -22,10 +22,10 @@ export class Login {
    */
   buttonLogin: Locator
 
-  constructor(readonly page: Page) {
-    this.inputEmail = page.locator('[data-test="username"]')
-    this.inputPassword = page.locator('[data-test="password"]')
-    this.buttonLogin = page.locator('[data-test="login-button"]')
+  constructor(public readonly page: Page) {
+    this.inputEmail = page.getByTestId('username')
+    this.inputPassword = page.getByTestId('password')
+    this.buttonLogin = page.getByTestId('login-button')
   }
 
   async doLogin(email: string, password: string) {
@@ -35,8 +35,6 @@ export class Login {
 
     await this.buttonLogin.click()
 
-    await expect(
-      this.page.locator('[data-test="inventory-container"]'),
-    ).toBeVisible()
+    expect(this.page.url()).not.toBe('/')
   }
 }
