@@ -2,7 +2,7 @@ import { test } from '../fixtures'
 import { userGenerator } from '../../lib/helper/userGenerator'
 import { CheckoutSteps } from '../../lib/utils/checkoutStepsEnum'
 
-test.describe(`\n Feature: Checkout: Suas informações (step um do checkout)`, () => {
+test.describe(`\n Feature: Checkout (step das informações do usuário)`, () => {
   test('CENÁRIO: Usuário preenchedo todos os dados do forms deve conseguir avançar no fluxo', async ({
     prepareOrder: _prepareOrder,
     checkoutPage,
